@@ -1,0 +1,38 @@
+@startuml
+' Gráfico de Progresión de Dificultad por Nivel
+' Copie este código en https://www.plantuml.com/plantuml/ para generar el diagrama
+
+@startsalt
+{
+  Progresión de Dificultad
+  ==
+  | Nivel | Tasa Victoria |
+  | Nivel 1 | 68% ████████████████████ |
+  | Nivel 2 | 54% ███████████████ |
+  | Nivel 3 | 47% █████████████ |
+  | Nivel 4 | 38% ██████████ |
+  | Nivel 5 | 29% ███████ |
+  | Nivel 6 | 21% █████ |
+}
+@endsalt
+
+@enduml
+
+' NOTA: Para un gráfico de barras profesional, use Excel o Python:
+' 
+' import matplotlib.pyplot as plt
+' 
+' niveles = ['Nivel 1', 'Nivel 2', 'Nivel 3', 'Nivel 4', 'Nivel 5', 'Nivel 6']
+' tasas = [68, 54, 47, 38, 29, 21]
+' 
+' plt.figure(figsize=(10, 6))
+' plt.bar(niveles, tasas, color='steelblue')
+' plt.xlabel('Nivel de Boss')
+' plt.ylabel('Tasa de Victoria del Jugador (%)')
+' plt.title('Progresión de Dificultad por Nivel')
+' plt.ylim(0, 80)
+' for i, v in enumerate(tasas):
+'     plt.text(i, v + 2, str(v) + '%', ha='center', fontweight='bold')
+' plt.grid(axis='y', alpha=0.3)
+' plt.savefig('dificultad_niveles.png', dpi=300, bbox_inches='tight')
+' plt.show()

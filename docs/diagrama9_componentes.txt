@@ -1,0 +1,84 @@
+@startuml
+' Diagrama de Componentes
+' Copie este código en https://www.plantuml.com/plantuml/ para generar el diagrama
+
+skinparam backgroundColor white
+skinparam component {
+  BackgroundColor LightBlue
+  BorderColor DarkBlue
+}
+
+package "Interfaz de Usuario" {
+  [Main]
+  [ProfileManager]
+  interface "IProfileManager" as I3
+}
+
+package "Capa de Juego" {
+  [OmahaPokerGame]
+  [LevelManager]
+  interface "IGameController" as I1
+}
+
+package "Capa de IA" {
+  [SimpleLearningEngine]
+  [BossCharacter]
+  [AIStrategy]
+  interface "ILearningEngine" as I2
+}
+
+package "Capa Core" {
+  [Card]
+  [Deck]
+  [Player]
+  [HandEvaluator]
+}
+
+package "Persistencia" {
+  [FileSystem]
+  database "Archivos .dat" as FS {
+    folder "Perfiles" {
+      [profile1_boss1.dat]
+      [profile1_boss2.dat]
+      [profile2_boss1.dat]
+    }
+  }
+  interface "IDataPersistence" as I4
+}
+
+' Dependencias entre componentes
+[Main] --> I1
+I1 -- [OmahaPokerGame]
+[OmahaPokerGame] --> I2
+I2 -- [SimpleLearningEngine]
+[SimpleLearningEngine] --> [BossCharacter]
+[BossCharacter] --> [AIStrategy]
+[OmahaPokerGame] --> [Card]
+[OmahaPokerGame] --> [Deck]
+[OmahaPokerGame] --> [Player]
+[OmahaPokerGame] --> [HandEvaluator]
+[SimpleLearningEngine] --> [Card]
+[AIStrategy] --> [Card]
+
+[Main] --> I3
+I3 -- [ProfileManager]
+[ProfileManager] --> I4
+I4 -- [FileSystem]
+[SimpleLearningEngine] --> I4
+
+note right of [SimpleLearningEngine]
+  Persiste Q-Table en disco
+  Carga aprendizaje previo
+end note
+
+note right of [ProfileManager]
+  Gestiona múltiples perfiles
+  Hasta 3 perfiles simultáneos
+end note
+
+note bottom of FS
+  Formato: ia_{profile}_{boss}_{BossName}.dat
+  Serialización de HashMap con Q-Values
+end note
+
+@enduml

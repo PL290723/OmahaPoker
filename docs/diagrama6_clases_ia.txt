@@ -1,0 +1,119 @@
+@startuml
+' Diagrama de Clases Detallado - Capa IA
+' Copie este código en https://www.plantuml.com/plantuml/ para generar el diagrama
+
+skinparam classAttributeIconSize 0
+skinparam backgroundColor white
+
+package "Capa IA - poker.ai" #FFFFCC {
+  
+  class SimpleLearningEngine {
+    - qTable: HashMap<String, double[]>
+    - boss: BossCharacter
+    - alpha: double = 0.1
+    - gamma: double = 0.95
+    - epsilon: double
+    - decisionCount: int
+    --
+    + SimpleLearningEngine(bossName: String)
+    + recordExperience(situation: String, action: int, reward: double): void
+    + getBestAction(situation: String): int
+    + getQValue(state: String, action: int): double
+    + updateQValue(state: String, action: int, value: double): void
+    + getCurrentExplorationRate(): double
+    - chooseAction(situation: String): int
+    - estimateBluffFrequency(): double
+  }
+
+  class BossCharacter {
+    - level: int
+    - name: String
+    - strategy: AIStrategy
+    - learningEngine: SimpleLearningEngine
+    - aggressiveness: double
+    --
+    + BossCharacter(level: int, name: String)
+    + decideAction(context: GameContext): Action
+    + getLearningEngine(): SimpleLearningEngine
+    + getLevel(): int
+    + adjustStrategy(): void
+  }
+
+  interface AIStrategy {
+    + decideAction(context: GameContext): Action
+    + getName(): String
+  }
+
+  class AggressiveStrategy {
+    + decideAction(context: GameContext): Action
+    + getName(): String
+  }
+
+  class BalancedStrategy {
+    + decideAction(context: GameContext): Action
+    + getName(): String
+  }
+
+  class ConservativeStrategy {
+    + decideAction(context: GameContext): Action
+    + getName(): String
+  }
+
+  class GameContext {
+    + phase: GamePhase
+    + handStrength: double
+    + potSize: int
+    + opponentBehavior: String
+    + communityCards: List<Card>
+    + playerChips: int
+    + bossChips: int
+    --
+    + encodeState(): String
+  }
+
+  enum Action {
+    FOLD
+    CHECK
+    CALL
+    RAISE_SMALL
+    RAISE_MEDIUM
+    RAISE_LARGE
+    ALL_IN
+  }
+
+  class Experience {
+    - state: String
+    - action: Action
+    - reward: double
+    - nextState: String
+    --
+    + Experience(...)
+  }
+}
+
+' Relaciones
+BossCharacter --> SimpleLearningEngine
+BossCharacter --> AIStrategy
+AggressiveStrategy ..|> AIStrategy
+BalancedStrategy ..|> AIStrategy
+ConservativeStrategy ..|> AIStrategy
+SimpleLearningEngine ..> GameContext : usa
+SimpleLearningEngine ..> Action : retorna
+SimpleLearningEngine o-- "*" Experience : almacena
+GameContext --> Action
+
+note right of SimpleLearningEngine
+  Motor de Q-Learning
+  - Explora vs Explota (ε-greedy)
+  - Aprende de experiencias
+  - Guarda conocimiento en qTable
+end note
+
+note right of BossCharacter
+  Oponente IA adaptativo
+  - Combina estrategia + aprendizaje
+  - Nivel determina dificultad
+  - Ajusta comportamiento dinámicamente
+end note
+
+@enduml

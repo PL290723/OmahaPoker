@@ -1,0 +1,229 @@
+# 🎮 GUÍA RÁPIDA v1.3
+
+## ✨ NOVEDADES
+
+### 1. Las acciones de la IA ahora SE VEN:
+```
+>>> El Tiburón está pensando...
+>>> 🔥 El Tiburón sube (RAISE) a: $120
+```
+
+### 2. Sistema de 3 PERFILES:
+- Progreso independiente
+- IA separada por perfil
+- Cambio rápido
+
+---
+
+## 🚀 INICIO RÁPIDO
+
+### Primera Vez:
+```
+> jugar_v1.3.bat
+
+SELECCIÓN DE PERFIL
+No hay perfiles. Vamos a crear uno.
+
+Nombre del perfil: Jugador1
+
+[✓] Perfil creado: Jugador1
+
+¿Pre-entrenar IA?
+  1. RÁPIDO
+  2. NORMAL ← RECOMENDADO
+  3. INTENSO
+  4. NO
+```
+
+---
+
+## 📋 MENÚ PRINCIPAL
+
+```
+╔═══════════════════════════════════════════════╗
+║              MENÚ PRINCIPAL                   ║
+╠═══════════════════════════════════════════════╣
+║  Perfil: Jugador1                             ║
+║  Fichas: $5000                                ║
+╠═══════════════════════════════════════════════╣
+║  1. Jugar Nivel                               ║
+║  2. Ver Niveles y Progreso                    ║
+║  3. Estadísticas                              ║
+║  4. Tutorial de Omaha Poker                   ║
+║  5. Ver Reporte de Aprendizaje de IA          ║
+║  6. Acerca de los Símbolos de Cartas          ║
+║  7. Gestionar Perfiles         ← NUEVO        ║
+║  8. Salir                                     ║
+╚═══════════════════════════════════════════════╝
+```
+
+---
+
+## 🎲 DURANTE EL JUEGO
+
+### Tu Turno:
+```
+--- TU TURNO ---
+Tus fichas: $1500
+Apuesta actual: $20
+Para igualar: $40
+
+Acciones disponibles:
+1. FOLD (Retirarse)     ← AHORA FUNCIONA
+2. CALL (Igualar $40)   ← AHORA FUNCIONA
+3. RAISE (Subir)
+4. ALL-IN
+
+Selecciona acción: 2
+```
+
+### Turno de la IA:
+```
+>>> El Novato está pensando...
+[Pausa de 0.8s]
+>>> 💰 El Novato iguala (CALL): $40
+
+>>> La Calculadora está pensando...
+>>> 🔥 La Calculadora sube (RAISE) a: $80
+
+>>> El Tiburón está pensando...
+>>> 💥 El Tiburón hace ALL-IN: $1500
+```
+
+---
+
+## 🗂️ GESTIONAR PERFILES
+
+### Ver Perfiles:
+```
+Menú → 7. Gestionar Perfiles
+
+Perfil actual: Jugador1
+
+Todos los perfiles:
+1. Jugador1 | Nivel: 3 | V/D: 15/8 (65%) | $4500 [ACTUAL]
+2. Pro2024  | Nivel: 6 | V/D: 45/12 (78%) | $12000
+3. [Disponible]
+
+Opciones:
+1. Cambiar de perfil
+2. Borrar un perfil
+3. Volver
+```
+
+### Crear 2º Perfil:
+```
+1. Juega con "Jugador1"
+2. Sal y vuelve a entrar
+3. En selección: "Crear Nuevo Perfil"
+4. Nombre: "Pro2024"
+5. Ahora tienes 2 perfiles independientes
+```
+
+### Cambiar de Perfil:
+```
+Menú → 7 → 1
+
+¿A cuál cambiar?
+1. Jugador1
+2. Pro2024
+
+Selecciona: 2
+
+[✓] Guardando progreso de Jugador1...
+[✓] Cargando progreso de Pro2024...
+[✓] Perfil cambiado exitosamente.
+```
+
+---
+
+## 📊 ÍCONOS DE ACCIONES
+
+| Ícono | Acción | Significado |
+|-------|--------|-------------|
+| 🚫 | FOLD | Se retira |
+| ✓ | CHECK | Pasa sin apostar |
+| 💰 | CALL | Iguala apuesta |
+| 🔥 | RAISE | Sube apuesta |
+| 💥 | ALL-IN | Todo al pozo |
+
+---
+
+## 💾 ARCHIVOS GENERADOS
+
+```
+proyectoED/
+├── profiles/
+│   ├── jugador1.profile       ← Datos del perfil
+│   └── pro2024.profile
+├── ia_jugador1_boss_1_El_Novato.dat
+├── ia_jugador1_boss_2_La_Calculadora.dat
+├── ia_pro2024_boss_1_El_Novato.dat
+└── ...
+```
+
+**Cada perfil tiene su propia IA!**
+
+---
+
+## ✅ PROBLEMAS RESUELTOS
+
+### ❌ "No puedo hacer FOLD ni CALL"
+✅ **Funciona perfectamente** - El problema era de visualización de la IA
+
+### ❌ "La IA no apuesta nunca"
+✅ **Resuelto** - Ahora ves todas sus acciones:
+```
+>>> 🔥 El Tiburón sube (RAISE) a: $150
+>>> 💰 La Calculadora iguala (CALL): $75
+>>> 🚫 El Novato se retira (FOLD)
+```
+
+### ❌ "Quiero perfiles"
+✅ **Sistema completo de 3 perfiles con progreso separado**
+
+---
+
+## 🎯 VENTAJAS DE LOS PERFILES
+
+### Ejemplo de Uso:
+
+**Perfil "Jugador1"** (Agresivo):
+- Juegas muy agresivo
+- IA se adapta → Se vuelve conservadora
+- Progreso: Nivel 3, 15 victorias
+
+**Perfil "Pro2024"** (Conservador):
+- Juegas muy conservador
+- IA se adapta → Se vuelve agresiva
+- Progreso: Nivel 6, 45 victorias
+
+**Perfil "Experimento"** (Mixto):
+- Pruebas estrategias locas
+- IA se confunde y re-aprende
+- Progreso: Nivel 1, 2 victorias
+
+**¡Cada uno con su propia IA entrenada!**
+
+---
+
+## 🔥 TIPS
+
+1. **Observa la IA:**
+   Ahora puedes ver qué hace y aprender de sus decisiones
+
+2. **Usa 3 perfiles:**
+   - Uno para jugar serio
+   - Uno para experimentar
+   - Uno para entrenar habilidades
+
+3. **Cambia de perfil si te frustras:**
+   Empieza de cero con otro perfil sin perder tu progreso principal
+
+---
+
+**VERSIÓN:** 1.3  
+**ESTADO:** ✅ Listo para jugar  
+**COMANDO:** `jugar_v1.3.bat`
+
+¡Disfruta! 🎮

@@ -1,0 +1,106 @@
+@startuml
+' Diagrama de Clases Completo del Sistema
+' Copie este código en https://www.plantuml.com/plantuml/ para generar el diagrama
+
+skinparam classAttributeIconSize 0
+skinparam backgroundColor white
+
+package "poker.core" #FFCCCC {
+  class Card {
+    - rank: Rank
+    - suit: Suit
+    + getRank(): Rank
+    + getSuit(): Suit
+    + toString(): String
+  }
+
+  class Deck {
+    - cards: LinkedList<Card>
+    + shuffle(): void
+    + dealCard(): Card
+    + size(): int
+  }
+
+  class Player {
+    - name: String
+    - chips: int
+    - hand: List<Card>
+    - folded: boolean
+    + bet(amount: int): void
+    + fold(): void
+    + getChips(): int
+    + setChips(chips: int): void
+  }
+
+  class HandEvaluator {
+    {static} + evaluateOmahaHand(...)
+    {static} + evaluateFiveCardHand(...)
+    {static} + generateCombinations(...)
+  }
+}
+
+package "poker.ai" #FFFFCC {
+  class SimpleLearningEngine {
+    - qTable: HashMap
+    - boss: BossCharacter
+    + recordExperience(...): void
+    + getBestAction(...): Action
+  }
+
+  class BossCharacter {
+    - level: int
+    - strategy: AIStrategy
+    - learning: SimpleLearningEngine
+    + decideAction(...): Action
+  }
+
+  interface AIStrategy {
+    + decideAction(...): Action
+  }
+}
+
+package "poker.game" #CCFFCC {
+  class OmahaPokerGame {
+    - players: List<Player>
+    - deck: Deck
+    - communityCards: List<Card>
+    + startGame(): void
+    + playHand(): void
+  }
+
+  class LevelManager {
+    - currentLevel: int
+    + createBoss(level: int): BossCharacter
+    + getLevelInfo(...): String
+  }
+}
+
+package "poker.ui" #CCCCFF {
+  class Main {
+    {static} + main(args: String[]): void
+  }
+
+  class ProfileManager {
+    - profiles: HashMap
+    + saveProfile(...): void
+    + loadProfile(...): Profile
+  }
+}
+
+' Relaciones
+Deck *-- Card
+Player *-- Card
+HandEvaluator ..> Card
+BossCharacter --|> Player
+BossCharacter --> SimpleLearningEngine
+BossCharacter --> AIStrategy
+OmahaPokerGame --> Deck
+OmahaPokerGame --> Player
+OmahaPokerGame --> HandEvaluator
+OmahaPokerGame --> BossCharacter
+LevelManager --> BossCharacter
+Main --> ProfileManager
+Main --> LevelManager
+Main --> OmahaPokerGame
+
+@enduml

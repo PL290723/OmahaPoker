@@ -1,0 +1,257 @@
+╔══════════════════════════════════════════════════════════════╗
+║                   OMAHA POKER v1.3                           ║
+║          CORRECCIONES Y SISTEMA DE PERFILES                  ║
+╚══════════════════════════════════════════════════════════════╝
+
+┌──────────────────────────────────────────────────────────────┐
+│ 🎯 TUS TRES PROBLEMAS - RESUELTOS                            │
+└──────────────────────────────────────────────────────────────┘
+
+  1. ❌ "No puedo hacer FOLD ni CALL"
+     ✅ FUNCIONABA, pero no veías las acciones de la IA
+     ✅ AHORA: Todas las acciones de la IA se muestran con íconos
+
+  2. ❌ "La IA no apuesta nunca"
+     ✅ SÍ APOSTABA, pero era invisible
+     ✅ AHORA: Ves exactamente qué hace con pausas dramáticas:
+        >>> El Tiburón está pensando...
+        >>> 🔥 El Tiburón sube (RAISE) a: $120
+
+  3. ❌ "Quiero perfiles para guardar progreso de bosses"
+     ✅ IMPLEMENTADO: Sistema de 3 perfiles independientes
+     ✅ Cada perfil tiene su propia IA entrenada
+
+┌──────────────────────────────────────────────────────────────┐
+│ 📦 ARCHIVOS MODIFICADOS/CREADOS                              │
+└──────────────────────────────────────────────────────────────┘
+
+  ✅ OmahaPokerGame.java (MODIFICADO)
+     - Pausa de 0.8s antes de acción de IA
+     - Mensajes con íconos: 🚫 ✓ 💰 🔥 💥
+     - Todas las acciones visibles
+  
+  ✅ Main.java (MODIFICADO)
+     - Sistema de selección/creación de perfiles
+     - Menú de gestión (opción 7)
+     - Guardado/carga específico por perfil
+     - 8 nuevos métodos
+  
+  ✅ ProfileManager.java (NUEVO)
+     - Gestiona hasta 3 perfiles
+     - Carpeta profiles/ para guardar
+     - Nombres únicos de archivos .dat por perfil
+  
+  ✅ LevelManager.java (MODIFICADO)
+     - getCurrentLevelNumber()
+     - Level.setCompleted(boolean)
+
+┌──────────────────────────────────────────────────────────────┐
+│ 🎮 ACCIONES DE LA IA - AHORA VISIBLES                        │
+└──────────────────────────────────────────────────────────────┘
+
+  ANTES:
+    (Silencio... no sabías qué hizo)
+  
+  AHORA:
+    >>> El Novato está pensando...
+    >>> 🚫 El Novato se retira (FOLD)
+    
+    >>> La Calculadora está pensando...
+    >>> 💰 La Calculadora iguala (CALL): $50
+    
+    >>> El Tiburón está pensando...
+    >>> 🔥 El Tiburón sube (RAISE) a: $120
+    
+    >>> El Maestro está pensando...
+    >>> 💥 El Maestro hace ALL-IN: $2500
+
+  ÍCONOS:
+    🚫 FOLD    - Se retira
+    ✓ CHECK   - Pasa sin apostar
+    💰 CALL    - Iguala apuesta
+    🔥 RAISE   - Sube apuesta
+    💥 ALL-IN  - Todo al pozo
+
+┌──────────────────────────────────────────────────────────────┐
+│ 🗂️ SISTEMA DE PERFILES                                       │
+└──────────────────────────────────────────────────────────────┘
+
+  CARACTERÍSTICAS:
+    ✅ Máximo 3 perfiles simultáneos
+    ✅ Progreso independiente (nivel, fichas, estadísticas)
+    ✅ IA separada por perfil (archivos .dat únicos)
+    ✅ Fácil cambio entre perfiles
+    ✅ Borrado seguro (no puedes borrar el actual)
+
+  ESTRUCTURA DE ARCHIVOS:
+    profiles/
+      ├── jugador1.profile
+      ├── pro2024.profile
+      └── experimento.profile
+    
+    ia_jugador1_boss_1_El_Novato.dat
+    ia_jugador1_boss_2_La_Calculadora.dat
+    ia_pro2024_boss_1_El_Novato.dat
+    ia_pro2024_boss_2_La_Calculadora.dat
+    ...
+
+  INFORMACIÓN GUARDADA POR PERFIL:
+    - Nombre (máx 15 caracteres)
+    - Nivel actual desbloqueado
+    - Total victorias/derrotas
+    - Fichas actuales
+    - Fecha creación
+    - Última vez jugado
+    - Aprendizaje de cada boss
+
+┌──────────────────────────────────────────────────────────────┐
+│ 🚀 FLUJO COMPLETO                                            │
+└──────────────────────────────────────────────────────────────┘
+
+  PRIMER USO:
+    1. Ejecutar: jugar_v1.3.bat
+    2. No hay perfiles → Crear uno
+    3. Nombre: "Jugador1"
+    4. [Opcional] Pre-entrenar IA
+    5. Jugar
+    6. Al salir → Guarda perfil + IA
+
+  USOS SIGUIENTES:
+    1. Ejecutar: jugar_v1.3.bat
+    2. Seleccionar perfil:
+       1. Jugador1 | Nivel: 3 | V/D: 15/8 | $4500
+       2. Pro2024  | Nivel: 6 | V/D: 45/12 | $12000
+       3. [Crear Nuevo]
+    3. Carga progreso + IA del perfil
+    4. Jugar
+    5. Al salir → Actualiza perfil
+
+  GESTIONAR PERFILES:
+    Menú → 7. Gestionar Perfiles
+      1. Cambiar de perfil
+      2. Borrar un perfil
+      3. Volver
+
+┌──────────────────────────────────────────────────────────────┐
+│ 🎯 EJEMPLO DE JUEGO                                          │
+└──────────────────────────────────────────────────────────────┘
+
+  --- TU TURNO ---
+  Tus fichas: $1500
+  Apuesta actual: $20
+  Para igualar: $40
+
+  Acciones disponibles:
+  1. FOLD (Retirarse)
+  2. CALL (Igualar $40)
+  3. RAISE (Subir)
+  4. ALL-IN
+
+  Selecciona acción: 2
+
+  [Tu acción se ejecuta]
+  
+  >>> El Tiburón está pensando...
+  >>> 🔥 El Tiburón sube (RAISE) a: $100
+  
+  [Vuelve a tu turno]
+
+┌──────────────────────────────────────────────────────────────┐
+│ 📊 COMPARATIVA                                               │
+└──────────────────────────────────────────────────────────────┘
+
+  Característica              v1.2  v1.3
+  ────────────────────────────────────────
+  Persistencia IA             ✅    ✅
+  Pre-entrenamiento           ✅    ✅
+  Acciones visibles de IA     ❌    ✅ NUEVO
+  Pausas dramáticas           ❌    ✅ NUEVO
+  Íconos en acciones          ❌    ✅ NUEVO
+  Perfiles múltiples          ❌    ✅ NUEVO
+  Progreso separado           ❌    ✅ NUEVO
+  IA específica por perfil    ❌    ✅ NUEVO
+  Gestión de perfiles         ❌    ✅ NUEVO
+
+┌──────────────────────────────────────────────────────────────┐
+│ 💡 VENTAJAS DE LOS PERFILES                                  │
+└──────────────────────────────────────────────────────────────┘
+
+  ESCENARIO 1:
+    "Jugador1" (Agresivo)
+      → Juegas agresivo
+      → IA se adapta → conservadora
+      → Progreso: Nivel 3
+
+  ESCENARIO 2:
+    "Pro2024" (Conservador)
+      → Juegas conservador
+      → IA se adapta → agresiva
+      → Progreso: Nivel 6
+
+  ESCENARIO 3:
+    "Experimento" (Mixto)
+      → Pruebas estrategias
+      → IA se re-entrena
+      → Progreso: Nivel 1
+
+  ¡CADA UNO CON SU PROPIA IA!
+
+┌──────────────────────────────────────────────────────────────┐
+│ 🎮 MENÚ PRINCIPAL ACTUALIZADO                                │
+└──────────────────────────────────────────────────────────────┘
+
+  ╔═══════════════════════════════════════════════╗
+  ║              MENÚ PRINCIPAL                   ║
+  ╠═══════════════════════════════════════════════╣
+  ║  Perfil: Jugador1                             ║
+  ║  Fichas: $5000                                ║
+  ╠═══════════════════════════════════════════════╣
+  ║  1. Jugar Nivel                               ║
+  ║  2. Ver Niveles y Progreso                    ║
+  ║  3. Estadísticas                              ║
+  ║  4. Tutorial de Omaha Poker                   ║
+  ║  5. Ver Reporte de Aprendizaje de IA          ║
+  ║  6. Acerca de los Símbolos de Cartas          ║
+  ║  7. Gestionar Perfiles         ← NUEVO        ║
+  ║  8. Salir                                     ║
+  ╚═══════════════════════════════════════════════╝
+
+┌──────────────────────────────────────────────────────────────┐
+│ ✅ ESTADO FINAL                                              │
+└──────────────────────────────────────────────────────────────┘
+
+  ✅ Compilado sin errores
+  ✅ 3 problemas resueltos
+  ✅ Acciones de IA 100% visibles
+  ✅ Sistema de perfiles funcional
+  ✅ Progreso independiente por perfil
+  ✅ IA separada por perfil
+  ✅ Interfaz mejorada con íconos
+
+┌──────────────────────────────────────────────────────────────┐
+│ 🚀 EJECUTAR                                                  │
+└──────────────────────────────────────────────────────────────┘
+
+  Windows:
+    > jugar_v1.3.bat
+
+  Manual:
+    > cd src
+    > javac -encoding UTF-8 Main.java poker\core\*.java poker\ai\*.java poker\game\*.java
+    > java Main
+
+┌──────────────────────────────────────────────────────────────┐
+│ 📄 DOCUMENTACIÓN                                             │
+└──────────────────────────────────────────────────────────────┘
+
+  ✅ CORRECCIONES_v1.3.md     - Detalles técnicos completos
+  ✅ GUIA_RAPIDA_v1.3.txt     - Guía de usuario
+  ✅ RESUMEN_v1.3.txt         - Este archivo
+
+╔══════════════════════════════════════════════════════════════╗
+║  VERSIÓN: 1.3                                                ║
+║  FECHA: Octubre 2025                                         ║
+║  ESTADO: ✅ LISTO PARA JUGAR                                 ║
+╚══════════════════════════════════════════════════════════════╝
+
+¡Ahora puedes ver TODO lo que hace la IA y tener hasta 3 perfiles!

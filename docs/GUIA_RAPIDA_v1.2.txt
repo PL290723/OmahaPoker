@@ -1,0 +1,270 @@
+# 🚀 GUÍA RÁPIDA - OMAHA POKER v1.2
+
+## ¿QUÉ CAMBIÓ?
+
+### ✅ PROBLEMA 1: "La IA olvida todo al cerrar el juego"
+**SOLUCIONADO:** Ahora guarda automáticamente en archivos `.dat`
+
+### ✅ PROBLEMA 2: "La IA empieza jugando muy mal"
+**SOLUCIONADO:** Pre-entrenamiento antes de jugar (500-5000 manos simuladas)
+
+---
+
+## 🎮 INICIO RÁPIDO
+
+### 1️⃣ Primera Vez
+
+```
+> jugar_v1.2.bat
+
+¿Pre-entrenar IA?
+  1. RÁPIDO   (500 manos ~10s)   ← Si tienes prisa
+  2. NORMAL   (2000 manos ~30s)  ← RECOMENDADO
+  3. INTENSO  (5000 manos ~60s)  ← IA muy fuerte
+  4. NO       (desde cero)
+
+Opción: 2
+
+[████████████████████] 100% - Decisiones: 8000
+✓ Pre-entrenamiento completado!
+✓ Datos guardados en: ia_boss_1_Novato_Nervioso.dat
+```
+
+**Resultado:** IA lista para desafiarte desde la mano #1
+
+---
+
+### 2️⃣ Veces Siguientes
+
+```
+> jugar_v1.2.bat
+
+[...] Buscando datos previos...
+[✓] Datos cargados: 287 estrategias, 1000 experiencias
+[✓] Decisiones previas: 8000 | Exploración: 7.2%
+
+--- IA continuará desde donde quedó ---
+```
+
+**Resultado:** IA recuerda todo lo aprendido
+
+---
+
+## 📊 ¿CÓMO FUNCIONA?
+
+### Durante Pre-Entrenamiento:
+
+```
+[████████░░░░░░░░░░░░] 40%
+
+¿Qué está haciendo?
+✓ Jugando 2000 manos simuladas
+✓ Probando diferentes estrategias
+✓ Aprendiendo qué funciona y qué no
+✓ Adaptándose a 3 tipos de oponentes
+
+Tiempo: ~30 segundos
+```
+
+### Al Jugar:
+
+```
+Mano #3
+[IA] Exploración: 15%
+[IA] Decisiones: 8045
+[!] La IA ha detectado tu estilo: AGRESIVO (72%)
+[!] IA se adapta a: CONSERVADOR
+
+--- Sigue aprendiendo en TIEMPO REAL ---
+```
+
+### Al Salir:
+
+```
+Opción: 7 (Salir)
+
+[...] Guardando progreso de la IA...
+[✓] Datos guardados en: ia_boss_1_Novato_Nervioso.dat
+[✓] Datos guardados en: ia_boss_2_Amateur_Predecible.dat
+...
+
+--- TODO se guarda automáticamente ---
+```
+
+---
+
+## 📁 ARCHIVOS GENERADOS
+
+```
+proyectoED/
+├── src/
+│   └── (código fuente)
+├── ia_boss_1_Novato_Nervioso.dat        ← Aprendizaje del Boss 1
+├── ia_boss_2_Amateur_Predecible.dat     ← Aprendizaje del Boss 2
+├── ia_boss_3_Profesional_Calculador.dat
+├── ia_boss_4_Veterano_Adaptable.dat
+├── ia_boss_5_Maestro_Impredecible.dat
+└── ia_boss_6_Leyenda_del_Poker.dat
+```
+
+**Cada archivo contiene:**
+- Q-Table (estrategias con valores)
+- 1000 experiencias
+- Perfil tuyo detectado
+- Estadísticas de aprendizaje
+
+---
+
+## 🎯 MODOS DE ENTRENAMIENTO
+
+| Modo | Manos | Tiempo | Decisiones | IA Resultante |
+|------|-------|--------|------------|---------------|
+| **RÁPIDO** | 500 | ~10s | ~2,000 | Competente |
+| **NORMAL** | 2,000 | ~30s | ~8,000 | Avanzada ⭐ |
+| **INTENSO** | 5,000 | ~60s | ~20,000 | Experta 🔥 |
+
+### ¿Cuál elegir?
+
+- **RÁPIDO:** Primera vez jugando, solo quieres probar
+- **NORMAL:** Quieres un desafío real (RECOMENDADO)
+- **INTENSO:** Quieres que la IA sea MUY difícil de vencer
+
+---
+
+## 💡 CONSEJOS
+
+### 🔄 Resetear IA
+```
+1. Cierra el juego
+2. Borra archivos .dat
+3. Vuelve a abrir
+4. Pre-entrena de nuevo
+```
+
+### 📈 Ver Progreso de IA
+```
+Menú Principal → Opción 5: Ver Reporte de Aprendizaje
+
+╔═════════════════════════════════════════╗
+║  ESTRATEGIAS MÁS EFECTIVAS              ║
+╠═════════════════════════════════════════╣
+║  1. RIVER_FUERTE_GRANDE|RAISE_BIG: 0.82 ║
+║  2. TURN_FUERTE_GRANDE|RAISE_BIG: 0.76  ║
+║  ...
+╚═════════════════════════════════════════╝
+```
+
+### 🎮 Cambiar Estilo de Juego
+```
+Si la IA se adapta demasiado bien a ti:
+→ Cambia tu estilo radicalmente
+→ IA tarda 6-9 manos en re-adaptarse
+→ Aprovecha esa ventana!
+```
+
+---
+
+## 🆚 COMPARACIÓN CON VERSIÓN ANTERIOR
+
+### ANTES (v1.1):
+```
+Iniciar juego
+  ↓
+IA desde CERO (explora 30%)
+  ↓
+Juegas 20 manos (IA aprende)
+  ↓
+Cierras juego
+  ↓
+❌ IA OLVIDA TODO
+```
+
+### AHORA (v1.2):
+```
+Iniciar juego
+  ↓
+Pre-entreno 2000 manos (30s)
+  ↓
+IA EXPERTA (explora 7%)
+  ↓
+Juegas 20 manos (IA sigue aprendiendo)
+  ↓
+Cierras juego
+  ↓
+✅ IA GUARDA TODO (.dat)
+  ↓
+Siguiente sesión
+  ↓
+✅ IA CARGA TODO
+  ↓
+Continúa desde donde quedó
+```
+
+---
+
+## ❓ PREGUNTAS FRECUENTES
+
+**P: ¿Puedo saltarme el pre-entrenamiento?**  
+R: Sí, elige opción 4. Pero la IA jugará mal al inicio.
+
+**P: ¿Los archivos .dat ocupan mucho espacio?**  
+R: No, cada uno pesa ~10-50 KB.
+
+**P: ¿Puedo borrar un boss específico?**  
+R: Sí, borra su archivo .dat. Esa IA volverá a cero.
+
+**P: ¿La IA puede volverse "demasiado buena"?**  
+R: Sí, si juegas miles de manos. Solución: resetea el .dat.
+
+**P: ¿Puedo copiar mi IA entrenada a otra PC?**  
+R: Sí, copia los archivos .dat junto con el juego.
+
+---
+
+## 🏆 DESAFÍO
+
+### Nivel 1: Novato
+- Pre-entrena RÁPIDO (500 manos)
+- Vence al Boss 1
+
+### Nivel 2: Amateur
+- Pre-entrena NORMAL (2000 manos)
+- Vence a los 3 primeros bosses
+
+### Nivel 3: Profesional
+- Pre-entrena INTENSO (5000 manos)
+- Vence a los 6 bosses
+- Sin resetear la IA
+
+### Nivel 4: Leyenda
+- Pre-entrena INTENSO
+- Juega 100+ manos
+- La IA te conoce al 100%
+- Intenta vencerla
+
+---
+
+## ✅ CHECKLIST DE PRUEBAS
+
+- [ ] Ejecutar `jugar_v1.2.bat`
+- [ ] Elegir pre-entrenamiento NORMAL
+- [ ] Ver barra de progreso completa
+- [ ] Confirmar archivos .dat creados
+- [ ] Jugar 5 manos
+- [ ] Cerrar con opción 7
+- [ ] Verificar mensaje "Guardando progreso"
+- [ ] Volver a abrir
+- [ ] Confirmar mensaje "Datos cargados"
+- [ ] Ver reporte ML (opción 5)
+- [ ] Confirmar >8000 decisiones
+
+---
+
+**¡Ahora la IA es PERSISTENTE e INTELIGENTE desde el inicio!** 🧠💾
+
+**Versión:** 1.2  
+**Cambios principales:**  
+✅ Persistencia de aprendizaje  
+✅ Pre-entrenamiento configurable  
+✅ Auto-guardado al salir  
+✅ Auto-carga al iniciar  

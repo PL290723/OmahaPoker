@@ -1,0 +1,112 @@
+@startuml
+' Diagrama de Secuencia - Flujo de Una Mano
+' Copie este código en https://www.plantuml.com/plantuml/ para generar el diagrama
+
+skinparam backgroundColor white
+skinparam sequenceArrowThickness 2
+skinparam roundcorner 10
+
+actor Usuario
+participant ":Main" as Main
+participant ":OmahaPokerGame" as Game
+participant ":BossCharacter" as Boss
+participant ":SimpleLearningEngine" as AI
+
+Usuario -> Main: inicia juego
+activate Main
+
+Main -> Game: startGame()
+activate Game
+
+Game -> Game: deck.shuffle()
+Game -> Game: repartir 4 cartas a c/u
+
+== Fase PRE-FLOP ==
+Game -> Usuario: mostrar mano
+Usuario -> Game: decidir acción (RAISE)
+Game -> Boss: decideAction(context)
+activate Boss
+
+Boss -> AI: getBestAction(situation)
+activate AI
+AI -> AI: evaluar Q-Table
+AI -> AI: ε-greedy selection
+AI --> Boss: Action.CALL
+deactivate AI
+
+Boss --> Game: CALL
+deactivate Boss
+
+== Fase FLOP ==
+Game -> Game: revelar 3 cartas comunitarias
+Game -> Usuario: mostrar flop
+Usuario -> Game: CHECK
+Game -> Boss: decideAction(context)
+activate Boss
+Boss -> AI: getBestAction(situation)
+activate AI
+AI --> Boss: Action.RAISE_SMALL
+deactivate AI
+Boss --> Game: RAISE_SMALL
+deactivate Boss
+
+Usuario -> Game: CALL
+
+== Fase TURN ==
+Game -> Game: revelar 4ta carta comunitaria
+Usuario -> Game: BET
+Game -> Boss: decideAction(context)
+activate Boss
+Boss -> AI: getBestAction(situation)
+activate AI
+AI --> Boss: Action.CALL
+deactivate AI
+Boss --> Game: CALL
+deactivate Boss
+
+== Fase RIVER ==
+Game -> Game: revelar 5ta carta comunitaria
+Usuario -> Game: CHECK
+Game -> Boss: decideAction(context)
+activate Boss
+Boss --> Game: CHECK
+deactivate Boss
+
+== SHOWDOWN ==
+Game -> Game: HandEvaluator.evaluateOmahaHand(...)
+Game -> Game: comparar manos
+Game -> Game: determinar ganador
+
+alt Usuario gana
+  Game -> Boss: recordExperience(state, action, NEGATIVE_REWARD)
+  activate Boss
+  Boss -> AI: recordExperience(...)
+  activate AI
+  AI -> AI: actualizar Q-Table
+  AI -> AI: Q(s,a) += α[r + γ*maxQ(s') - Q(s,a)]
+  deactivate AI
+  deactivate Boss
+  Game -> Usuario: mostrar victoria
+else Boss gana
+  Game -> Boss: recordExperience(state, action, POSITIVE_REWARD)
+  activate Boss
+  Boss -> AI: recordExperience(...)
+  activate AI
+  AI -> AI: actualizar Q-Table
+  deactivate AI
+  deactivate Boss
+  Game -> Usuario: mostrar derrota
+end
+
+Game --> Main: mano completada
+deactivate Game
+Main --> Usuario: continuar/salir
+deactivate Main
+
+note right of AI
+  El aprendizaje ocurre
+  después de cada mano
+  basado en el resultado
+end note
+
+@enduml

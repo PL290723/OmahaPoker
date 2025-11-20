@@ -1,0 +1,50 @@
+@startuml
+' Diagrama de Arquitectura en Capas del Sistema Omaha Poker
+' Copie este código en https://www.plantuml.com/plantuml/ para generar el diagrama
+
+skinparam packageStyle rectangle
+skinparam backgroundColor white
+
+package "Capa de Presentación" #LightBlue {
+  [Main.java]
+  [ProfileManager.java]
+}
+
+package "Capa de Juego" #LightGreen {
+  [OmahaPokerGame.java]
+  [LevelManager.java]
+}
+
+package "Capa de IA" #LightYellow {
+  [SimpleLearningEngine.java]
+  [AIStrategy]
+}
+
+package "Capa de Núcleo" #LightCoral {
+  [Card]
+  [Deck]
+  [Player]
+  [Hand]
+  [HandEvaluator]
+}
+
+' Relaciones entre capas
+[Main.java] --> [OmahaPokerGame.java]
+[ProfileManager.java] --> [OmahaPokerGame.java]
+[OmahaPokerGame.java] --> [SimpleLearningEngine.java]
+[OmahaPokerGame.java] --> [Card]
+[OmahaPokerGame.java] --> [Deck]
+[SimpleLearningEngine.java] --> [Card]
+[AIStrategy] --> [Card]
+
+note right of "Capa de Presentación"
+  Interfaz de usuario
+  y gestión de perfiles
+end note
+
+note right of "Capa de Núcleo"
+  Clases fundamentales
+  del dominio del póker
+end note
+
+@enduml

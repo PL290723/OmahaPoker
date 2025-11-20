@@ -1,0 +1,108 @@
+@startuml
+' Diagrama de Clases Detallado - Capa Core
+' Copie este código en https://www.plantuml.com/plantuml/ para generar el diagrama
+
+skinparam classAttributeIconSize 0
+skinparam backgroundColor white
+
+package "Capa CORE - poker.core" #FFCCCC {
+  
+  enum Rank {
+    TWO, THREE, FOUR, FIVE
+    SIX, SEVEN, EIGHT, NINE
+    TEN, JACK, QUEEN, KING, ACE
+    + getValue(): int
+  }
+
+  enum Suit {
+    HEARTS
+    DIAMONDS
+    CLUBS
+    SPADES
+    + getSymbol(): String
+  }
+
+  class Card {
+    - rank: Rank
+    - suit: Suit
+    --
+    + Card(rank: Rank, suit: Suit)
+    + getRank(): Rank
+    + getSuit(): Suit
+    + toString(): String
+    + equals(obj: Object): boolean
+    + hashCode(): int
+  }
+
+  class Deck {
+    - cards: LinkedList<Card>
+    --
+    + Deck()
+    + shuffle(): void
+    + dealCard(): Card
+    + size(): int
+    + reset(): void
+  }
+
+  class Player {
+    # name: String
+    # chips: int
+    # hand: List<Card>
+    # folded: boolean
+    # currentBet: int
+    --
+    + Player(name: String, chips: int)
+    + addCard(card: Card): void
+    + clearHand(): void
+    + bet(amount: int): void
+    + fold(): void
+    + getChips(): int
+    + setChips(chips: int): void
+    + getName(): String
+    + isFolded(): boolean
+  }
+
+  class HandEvaluator <<utility>> {
+    --
+    {static} + evaluateOmahaHand(hole: List<Card>, community: List<Card>): HandRanking
+    {static} + evaluateFiveCardHand(cards: List<Card>): HandRanking
+    {static} + generateCombinations(list: List, k: int): List
+    {static} - isFlush(cards: List<Card>): boolean
+    {static} - isStraight(cards: List<Card>): boolean
+    {static} - countRanks(cards: List<Card>): Map
+  }
+
+  class HandRanking {
+    - handType: HandType
+    - rankValue: int
+    - kickers: List<Integer>
+    --
+    + compareTo(other: HandRanking): int
+    + toString(): String
+  }
+
+  enum HandType {
+    HIGH_CARD
+    PAIR
+    TWO_PAIR
+    THREE_OF_A_KIND
+    STRAIGHT
+    FLUSH
+    FULL_HOUSE
+    FOUR_OF_A_KIND
+    STRAIGHT_FLUSH
+    ROYAL_FLUSH
+    + getRankValue(): int
+  }
+}
+
+' Relaciones dentro de Core
+Card --> Rank
+Card --> Suit
+Deck *-- "52" Card : contiene
+Player o-- "*" Card : tiene
+HandEvaluator ..> Card : evalúa
+HandEvaluator ..> HandRanking : retorna
+HandRanking --> HandType
+
+@enduml

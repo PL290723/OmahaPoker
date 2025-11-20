@@ -1,0 +1,133 @@
+# 🎉 ACTUALIZACIONES APLICADAS - v1.1
+
+## ✅ PROBLEMAS RESUELTOS
+
+### 1. Símbolos de Cartas ♠♥♣♦ → C D T P
+**ANTES:** ♥♦♣♠ (no se veían bien en consola)
+**AHORA:** C=Corazones, D=Diamantes, T=Tréboles, P=Picas
+
+**Ejemplo:** `AC KP 10D JT` (As Corazones, Rey Picas, 10 Diamantes, Jota Tréboles)
+
+---
+
+### 2. IA que Aprende MÁS y MEJOR
+
+#### 📈 Aprendizaje Mejorado:
+- **Learning Rate:** 0.15 → disminuye con experiencia (aprende rápido, se estabiliza)
+- **Exploración:** 30% → 5% (prueba mucho al inicio, se enfoca después)
+- **Adaptación:** Cada 3 manos (antes cada 5)
+- **Recompensas:** Inmediatas por cada acción (no solo al final)
+
+#### 👀 Feedback Visual Durante el Juego:
+
+```
+[IA] Estado inicial - Exploración: 30%
+[IA] Decisiones aprendidas: 0
+
+// Después de jugar...
+[IA] Estado de aprendizaje:
+    Estilo: AGRESIVO
+    Exploración: 18%
+    Experiencias: 45
+    [!] La IA ha detectado tu estilo y se está adaptando!
+```
+
+#### 📊 Progreso Cada 3 Manos:
+
+```
+╔═══════════════════════════════════════════════╗
+║    PROGRESO DE APRENDIZAJE DE LA IA          ║
+╠═══════════════════════════════════════════════╣
+║  Decisiones totales: 42
+║  Tasa de exploración: 22.0%
+║  Estilo adaptado: AGRESIVO
+║  Tu perfil detectado:
+║    - Agresión: 65.0%
+║    - Fold a Raise: 25.0%
+╚═══════════════════════════════════════════════╝
+```
+
+#### 🧠 Reporte Expandido:
+
+Ahora muestra:
+- ✅ Top 8 mejores estrategias aprendidas (con valores Q)
+- ✅ Top 5 peores estrategias (las que evita)
+- ✅ Estadísticas de aprendizaje (decisiones, exploración, learning rate)
+- ✅ Análisis de cómo aprende
+
+---
+
+## 🎮 CÓMO SE NOTA EN EL JUEGO
+
+### Manos 1-3: IA Explorando
+```
+[IA] Exploración: 30%
+```
+Juega diferente cada vez, probando estrategias.
+
+### Manos 4-10: IA Aprendiendo
+```
+[IA] Exploración: 15%
+[!] La IA ha detectado tu estilo y se está adaptando!
+```
+Empieza a contrarrestar tus movimientos.
+
+### Manos 10+: IA Dominando
+```
+[IA] Exploración: 8%
+Estilo adaptado: AGRESIVO
+```
+Juega óptimo contra TU estilo específico.
+
+---
+
+## 📋 NUEVA OPCIÓN EN MENÚ
+
+**Opción 6: "Acerca de los Símbolos de Cartas"**
+Explica la notación C/D/T/P con ejemplos.
+
+---
+
+## 🚀 COMPILAR Y EJECUTAR
+
+```bash
+# Windows
+cd src
+javac Main.java poker/core/*.java poker/ai/*.java poker/game/*.java
+java Main
+
+# O usa los scripts
+compilar.bat
+ejecutar.bat
+```
+
+---
+
+## 💡 COMPORTAMIENTO ESPERADO
+
+Si juegas:
+- **Muy agresivo** → IA se vuelve conservadora (espera manos fuertes)
+- **Mucho fold** → IA se vuelve agresiva (te presiona)
+- **Muchos bluffs** → IA te iguala más (llama tus faroles)
+
+**¡La IA literalmente aprende de ti mientras juegas!** 🎯
+
+---
+
+## ✨ RESUMEN DE CAMBIOS
+
+| Característica | Antes | Ahora |
+|---------------|-------|-------|
+| Símbolos cartas | Unicode | ASCII (C/D/T/P) |
+| Learning rate | 0.10 fijo | 0.15 → decay |
+| Exploración | 10% fijo | 30% → 5% |
+| Feedback visual | Mínimo | Completo cada 3 manos |
+| Adaptación | Cada 5 manos | Cada 3 manos |
+| Recompensas | Solo final | Inmediatas + final |
+| Reporte ML | 5 estrategias | 8 mejores + 5 peores |
+
+---
+
+**ESTADO: ✅ COMPILADO Y LISTO PARA JUGAR**
+
+¡Disfruta viendo cómo la IA aprende de ti en tiempo real! 🎮🧠

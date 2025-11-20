@@ -1,0 +1,81 @@
+@startuml
+' Diagrama de Estados - Fases del Juego
+' Copie este código en https://www.plantuml.com/plantuml/ para generar el diagrama
+
+skinparam backgroundColor white
+skinparam state {
+  BackgroundColor LightBlue
+  BorderColor DarkBlue
+  ArrowColor DarkBlue
+  ArrowFontSize 12
+}
+
+[*] --> PreFlop : iniciar mano\n(repartir 4 cartas c/u)
+
+state PreFlop {
+  state "PRE-FLOP" as PF
+  PF : Jugador tiene 4 cartas privadas
+  PF : Aún no hay cartas comunitarias
+  PF : Primera ronda de apuestas
+}
+
+state Flop {
+  state "FLOP" as F
+  F : 3 cartas comunitarias reveladas
+  F : Segunda ronda de apuestas
+  F : Jugador evalúa posibles combinaciones
+}
+
+state Turn {
+  state "TURN" as T
+  T : 4ta carta comunitaria revelada
+  T : Tercera ronda de apuestas
+  T : Mayor información disponible
+}
+
+state River {
+  state "RIVER" as R
+  R : 5ta carta comunitaria revelada
+  R : Todas las cartas visibles
+  R : Última ronda de apuestas
+}
+
+state Showdown {
+  state "SHOWDOWN" as SD
+  SD : Comparación de manos
+  SD : Usar 2 cartas privadas + 3 comunitarias
+  SD : Determinar ganador
+  SD : Otorgar recompensa/castigo a IA
+}
+
+PreFlop --> Flop : continuar\n(al menos 2 jugadores activos)
+Flop --> Turn : continuar
+Turn --> River : continuar
+River --> Showdown : última apuesta igualada
+
+PreFlop --> [*] : todos fold\nexcepto 1
+Flop --> [*] : todos fold\nexcepto 1
+Turn --> [*] : todos fold\nexcepto 1
+River --> [*] : todos fold\nexcepto 1
+
+Showdown --> [*] : determinar ganador\nrepartir fichas
+
+note right of PreFlop
+  Decisión más riesgosa
+  Poca información
+  Alto factor de bluff
+end note
+
+note right of River
+  Máxima información
+  Decisión más segura
+  Menos incertidumbre
+end note
+
+note bottom of Showdown
+  Aquí ocurre el aprendizaje:
+  IA actualiza Q-Table basado en
+  si ganó (+recompensa) o perdió (-recompensa)
+end note
+
+@enduml

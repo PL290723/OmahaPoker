@@ -1,0 +1,88 @@
+# ============================================================
+# .gitignore - Proyecto Omaha Poker con IA Q-Learning
+# ============================================================
+
+*.png
+
+# Archivos compilados de Java
+*.class
+bin/
+*.jar
+*.war
+*.ear
+
+# Archivos de IA entrenados (datos de Q-Learning)
+# Estos son específicos de cada usuario y se regeneran
+data/*.dat
+
+# Archivos de perfil de usuario
+# Contienen progreso personal de cada jugador
+profiles/*.profile
+
+# Archivos LaTeX temporales
+*.aux
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.synctex.gz
+*.fdb_latexmk
+*.fls
+*.bbl
+*.blg
+*.idx
+*.ilg
+*.ind
+
+# PDF generado (opcional: comentar si quieres versionarlo)
+# docs/*.pdf
+
+# Archivos del sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Archivos de IDEs
+.vscode/
+.idea/
+*.iml
+*.swp
+*.swo
+*~
+.classpath
+.project
+.settings/
+
+# Archivos de backup
+*.bak
+*.backup
+*~
+
+# Logs de la aplicación
+logs/
+*.log
+
+# Archivos temporales de Windows
+$RECYCLE.BIN/
+
+# Archivos temporales de Python (scripts auxiliares)
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Node modules si se usa alguna herramienta JS
+node_modules/
+
+# Archivos de configuración local
+config.local
+*.local
+
+# Archivos de test temporales
+test-output/
+test-results/
+
+# Cache de Maven/Gradle (si se usa en futuro)
+target/
+build/
+.gradle/

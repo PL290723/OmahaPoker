@@ -1,0 +1,129 @@
+@startuml
+' Diagrama de Despliegue
+' Copie este código en https://www.plantuml.com/plantuml/ para generar el diagrama
+
+skinparam backgroundColor white
+skinparam node {
+  BackgroundColor LightSkyBlue
+  BorderColor DarkBlue
+}
+skinparam component {
+  BackgroundColor LightGreen
+  BorderColor DarkGreen
+}
+skinparam artifact {
+  BackgroundColor LightYellow
+  BorderColor DarkOrange
+}
+skinparam database {
+  BackgroundColor LightCoral
+  BorderColor DarkRed
+}
+
+' Nodo físico: Computadora del usuario
+node "<<Computadora Local>>\nWindows/Linux/MacOS" as PC {
+  
+  ' Entorno de ejecución
+  node "<<Entorno de Ejecución>>\nJava Virtual Machine (JVM)\nJDK 11 o superior" as JVM {
+    
+    ' Aplicación desplegada
+    component "<<Aplicación Java>>\nOmahaPoker.jar" as APP {
+      
+      ' Paquetes principales
+      package "poker.ui" {
+        [Main.class]
+        [ProfileManager.class]
+      }
+      
+      package "poker.game" {
+        [OmahaPokerGame.class]
+        [LevelManager.class]
+      }
+      
+      package "poker.ai" {
+        [SimpleLearningEngine.class]
+        [BossCharacter.class]
+        [AIStrategy.class]
+      }
+      
+      package "poker.core" {
+        [Card.class]
+        [Deck.class]
+        [Player.class]
+        [HandEvaluator.class]
+      }
+    }
+    
+    ' Librerías
+    artifact "<<Librería>>\nJava Collections\nFramework" as JCF
+    artifact "<<Librería>>\nJava I/O\nSerialización" as JIO
+    
+    APP --> JCF : <<usa>>
+    APP --> JIO : <<usa>>
+  }
+  
+  ' Sistema de archivos
+  database "<<Sistema de Archivos>>\nAlmacenamiento Local" as FS {
+    folder "Directorio de Datos\n./data/" {
+      artifact "ia_profile1_boss1_ElNovato.dat" as DAT1
+      artifact "ia_profile1_boss2_ElAmateur.dat" as DAT2
+      artifact "ia_profile2_boss1_ElNovato.dat" as DAT3
+      artifact "ia_profile3_boss6_LaLeyenda.dat" as DAT4
+      artifact "..." as DOTS
+    }
+  }
+  
+  ' Terminal/Consola
+  component "<<Interfaz>>\nConsola/Terminal" as CONSOLE
+}
+
+' Relaciones entre componentes
+JVM --> FS : <<lee/escribe>>
+APP --> CONSOLE : <<muestra>>
+CONSOLE --> APP : <<entrada usuario>>
+
+' Notas explicativas
+note right of JVM
+  **Requisitos del Sistema:**
+  • Java Runtime Environment (JRE) 11+
+  • Memoria RAM: 256 MB mínimo
+  • Espacio en disco: 50 MB
+  • Procesador: 1.0 GHz o superior
+end note
+
+note right of FS
+  **Formato de Archivos .dat:**
+  • Serialización Java estándar
+  • Contiene HashMap<String, Double>
+    con pares (estado-acción, Q-value)
+  • Tamaño típico: 10-50 KB por archivo
+  • Persistencia automática al salir
+end note
+
+note bottom of APP
+  **Modo de Ejecución:**
+  java -jar OmahaPoker.jar
+  
+  **Arquitectura Standalone:**
+  No requiere servidor externo
+  No requiere conexión a internet
+  Ejecución completamente local
+end note
+
+note left of CONSOLE
+  **Interfaz de Usuario:**
+  • Texto ASCII con emojis UTF-8
+  • Interacción por línea de comandos
+  • Compatible con cualquier terminal
+    que soporte UTF-8
+end note
+
+' Flujo de datos principal
+note top of PC
+  **Diagrama de Despliegue - Sistema Omaha Poker**
+  Muestra la arquitectura física de despliegue
+  con un único nodo (computadora local)
+  ejecutando la aplicación Java standalone
+end note
+
+@enduml

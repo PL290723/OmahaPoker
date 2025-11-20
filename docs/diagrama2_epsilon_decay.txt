@@ -1,0 +1,36 @@
+@startuml
+' Gráfico de Decay de Epsilon durante Pre-entrenamiento
+' Copie este código en https://www.plantuml.com/plantuml/ para generar el diagrama
+
+@startwbs
+* Evolución de Epsilon (ε)
+** Mano 0: 30%
+*** Exploración máxima
+** Mano 500: 20%
+*** Reducción gradual
+** Mano 1000: 10%
+*** Punto medio
+** Mano 1500: 6.7%
+*** Convergencia
+** Mano 2000+: 5%
+*** Estabilización
+@endwbs
+
+@enduml
+
+' NOTA: PlantUML no es ideal para gráficos de línea con datos numéricos.
+' Para un mejor resultado, use Excel, Google Sheets o Python (matplotlib)
+' con estos datos:
+' 
+' Manos    | Epsilon
+' ---------|--------
+' 0        | 0.30
+' 500      | 0.20
+' 1000     | 0.10
+' 1500     | 0.067
+' 2000     | 0.05
+' 2500+    | 0.05
+'
+' Título: "Decay de Epsilon durante Pre-entrenamiento"
+' Eje X: "Número de Decisiones"
+' Eje Y: "Tasa de Exploración (ε)"
