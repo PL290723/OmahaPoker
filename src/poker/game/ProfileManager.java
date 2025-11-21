@@ -220,6 +220,6 @@ public class ProfileManager {
     public static String getBossDataFilename(String profileName, int bossNumber, String bossName) {
         String sanitized = profileName.replaceAll("[^a-zA-Z0-9]", "_").toLowerCase();
         String bossNameSanitized = bossName.replace(" ", "_");
-        return "ia_" + sanitized + "_boss_" + bossNumber + "_" + bossNameSanitized + ".dat";
+        return "data/ia_" + sanitized + "_boss_" + bossNumber + "_" + bossNameSanitized + ".dat";
     }
 }
