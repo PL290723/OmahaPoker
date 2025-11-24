@@ -155,14 +155,14 @@ El juego soporta hasta 3 perfiles simultáneos. Los datos se guardan en `profile
 
 ## Licencia
 
-Proyecto académico - Universidad Tecnológica de la Costa  
+Proyecto académico - Tecnológico Nacional de México en Celaya
 Materia: Estructura de Datos  
 Fecha: Noviembre 2025
 
 ## Autor
 
 **Paulo Cesar Rivera Lara**  
-Ingeniería en Desarrollo de Software
+Ingeniería en Sistemas Computacionales 
 
 ---
 
