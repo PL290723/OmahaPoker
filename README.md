@@ -56,11 +56,6 @@ proyectoED/
 javac -d bin -encoding UTF-8 src\Main.java src\poker\core\*.java src\poker\ai\*.java src\poker\game\*.java
 ```
 
-O usar el script de compilación:
-```bash
-scripts\compilar.bat
-```
-
 ### Ejecutar el juego
 
 ```bash
