@@ -119,7 +119,6 @@ La documentación completa (93 páginas) está disponible en `docs/1.pdf` e incl
 ## Requisitos
 
 - **Java 8+** (recomendado Java 11 o superior)
-- **Windows** (scripts .bat) o adaptable a Linux/Mac
 - **Consola con soporte UTF-8** para caracteres especiales
 
 ## Perfiles de Usuario
