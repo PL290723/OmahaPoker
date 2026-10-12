@@ -67,11 +67,6 @@ scripts\compilar.bat
 java -cp bin Main
 ```
 
-O usar el script de ejecución:
-```bash
-scripts\ejecutar.bat
-```
-
 ## Características
 
 - **Juego completo de Omaha Poker** con reglas oficiales
